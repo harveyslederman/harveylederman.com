@@ -1,0 +1,197 @@
+/* Quiet Study: warm, comfortable, like reading in a good library */
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+
+* { box-sizing: border-box; }
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+body {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #2c2c2c;
+    background: #faf8f5;
+    margin: 0;
+    padding: 0;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+}
+
+.page {
+    animation: fadeIn 0.2s ease-in;
+}
+
+.page {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 40px 40px 50px;
+}
+
+header {
+    margin-bottom: 30px;
+}
+
+.name-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 16px;
+}
+
+.profile-photo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #e8e4df;
+}
+
+h1 {
+    font-size: 1.9rem;
+    font-weight: 400;
+    margin: 0;
+    letter-spacing: -0.01em;
+    color: #1a1a1a;
+}
+
+.name-link {
+    color: #1a1a1a;
+    border-bottom: none;
+}
+
+.name-link:hover {
+    border-bottom: none;
+    color: #8b4513;
+}
+
+.tagline {
+    color: #666;
+    font-size: 0.95rem;
+    font-style: italic;
+    margin-top: 4px;
+}
+
+.elsewhere {
+    margin-top: 10px;
+    font-size: 0.85rem;
+}
+
+.elsewhere a {
+    color: #888;
+    margin-right: 16px;
+}
+
+.elsewhere a:hover {
+    color: #8b4513;
+}
+
+.email-inline {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #999;
+    margin-left: 8px;
+}
+
+nav.contact {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid #e8e4df;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+nav.contact a {
+    color: #555;
+    margin-right: 6px;
+}
+
+nav.contact a.current {
+    color: #8b4513;
+    font-style: italic;
+}
+
+nav.contact .sep {
+    margin-right: 6px;
+    color: #ccc;
+}
+
+nav.contact .sep::after {
+    content: '·';
+}
+
+p {
+    margin: 0 0 14px 0;
+    text-align: justify;
+}
+
+a {
+    color: #8b4513;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+}
+
+a:hover {
+    border-bottom-color: #8b4513;
+}
+
+h2 {
+    font-size: 1rem;
+    font-weight: 400;
+    font-style: italic;
+    color: #555;
+    margin: 48px 0 20px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e8e4df;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    margin-bottom: 14px;
+    padding-left: 0;
+    text-align: justify;
+}
+
+em { font-style: italic; }
+
+.spacer {
+    height: 30px;
+}
+
+.email {
+    font-size: 0.85rem;
+    color: #888;
+    font-family: 'Courier New', monospace;
+}
+
+/* Page title for sub-pages */
+.page-title {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 0 0 40px 0;
+    color: #1a1a1a;
+}
+
+@media (max-width: 600px) {
+    body { font-size: 15px; }
+    .page { padding: 30px 20px 50px; }
+    .name-row { flex-direction: column; align-items: flex-start; gap: 16px; }
+    h1 { font-size: 1.5rem; }
+    p, li { text-align: left; }
+    nav.contact {
+        white-space: normal;
+        line-height: 2;
+    }
+    nav.contact .sep { display: none; }
+    nav.contact a {
+        margin-right: 12px;
+    }
+}
