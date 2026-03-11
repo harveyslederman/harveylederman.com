@@ -21,7 +21,7 @@ body {
 }
 
 .page {
-    animation: fadeIn 0.2s ease-in;
+    animation: fadeIn 0.2s ease-in forwards;
 }
 
 .page {
@@ -113,6 +113,8 @@ nav.contact a.current {
     font-style: italic;
 }
 
+.nav-research-short { display: none; }
+
 nav.contact .sep {
     margin-right: 6px;
     color: #ccc;
@@ -182,16 +184,26 @@ em { font-style: italic; }
 
 @media (max-width: 600px) {
     body { font-size: 15px; }
-    .page { padding: 30px 20px 50px; }
+    html, body {
+        overflow-x: hidden;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    .page { padding: 30px 20px 50px; min-height: 100vh; }
     .name-row { flex-direction: column; align-items: flex-start; gap: 16px; }
     h1 { font-size: 1.5rem; }
     p, li { text-align: left; }
     nav.contact {
         white-space: normal;
         line-height: 2;
+        hyphens: none;
+        -webkit-hyphens: none;
     }
     nav.contact .sep { display: none; }
     nav.contact a {
         margin-right: 12px;
+        white-space: nowrap;
     }
+    .nav-research-full { display: none; }
+    .nav-research-short { display: inline; }
 }
