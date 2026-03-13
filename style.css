@@ -112,7 +112,8 @@ nav.contact a.current {
     font-style: italic;
 }
 
-.nav-research-short { display: none; }
+.nav-research-short { display: none !important; }
+.nav-research-full { display: inline !important; }
 
 nav.contact .sep {
     margin-right: 6px;
@@ -203,6 +204,6 @@ em { font-style: italic; }
         margin-right: 12px;
         white-space: nowrap;
     }
-    .nav-research-full { display: none; }
-    .nav-research-short { display: inline; }
+    .nav-research-full { display: none !important; }
+    .nav-research-short { display: inline !important; }
 }
