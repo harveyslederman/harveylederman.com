@@ -1,5 +1,5 @@
 /* Quiet Study: warm, comfortable, like reading in a good library */
-/* Google Font loaded via <link> in HTML for better performance */
+/* Using system fonts for fast loading */
 
 * { box-sizing: border-box; }
 
@@ -9,7 +9,7 @@
 }
 
 body {
-    font-family: 'Libre Baskerville', Georgia, serif;
+    font-family: Georgia, "Times New Roman", serif;
     font-size: 16px;
     line-height: 1.7;
     color: #2c2c2c;
