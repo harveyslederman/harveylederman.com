@@ -513,3 +513,190 @@ full texts from journal and preprint sites was blocked):
 * J. Hanson, "A metric set theory with a universal set", *J. Symbolic Logic* (2023/24).
 * G. Restall, *An Introduction to Substructural Logics* (Routledge 2000), for
   the RW/RWK axiomatics and terminology.
+
+---
+---
+
+# Part II: ω-consistency (added after the follow-up question)
+
+Notation. NT_Ł := Ł∀ + PA (crisp, induction for T-free formulas) + the
+dequotation schema 𝒯 = { T⟨φ⟩ ↔ φ : φ a sentence }. NT_RWK := the same with
+RWKQ in place of Ł∀. A theory is ω-inconsistent if for some φ(x) it proves
+∃xφ(x) and proves ¬φ(n̄) for every n. Since RWKQ ⊆ Ł∀ (Theorem A),
+NT_RWK ⊆ NT_Ł, so **ω-consistency of NT_Ł would imply ω-consistency of
+NT_RWK, and ω-inconsistency of NT_RWK would imply ω-inconsistency of NT_Ł.**
+
+## 11. Theorem Ω: NT_Ł is ω-inconsistent (with an explicit witness)  [verified]
+
+This is the result attributed to Restall (1992); I could not read his paper,
+so here is a complete proof from the schema alone. No uniform disquotation,
+no induction on T-formulas, no ω-rule is used.
+
+Setup as in §4: C ↔ ∃x¬T(τ(x)), with T(τ(1)) ↔ C and
+T(τ(n+1)) ↔ (C ∘ T(τ(n))) as schema instances, so that in every model
+D(n) := ‖T(τ(n))‖ equals cⁿ for standard n, where c := ‖C‖. Write p := ¬c.
+By the first biconditional, c = sup_m ¬D(m) over the whole domain, i.e.
+
+    p = inf_m D(m)      (over all m in the domain, standard or not).      (†)
+
+**Witness.**   φ(x) := (T(τ(x)) → ¬C) ∘ (T(τ(x)) → ¬C).
+
+**Claim 1: NT_Ł ⊢ ¬φ(n̄) for every n.**
+¬φ(n) is (T(τ(n)) → ¬C) → ¬(T(τ(n)) → ¬C), i.e. ¬Cⁿ⁺¹ → Cⁿ⁺¹ after
+unfolding (T(τ(n)) → ¬C = ¬(Cⁿ ∘ C) = ¬Cⁿ⁺¹). By §4, NT_Ł ⊢ ¬C → Cᵏ for
+every k. Propositional Ł proves the inference
+
+    ¬C → C^{2n+2}   ⊢   ¬Cⁿ⁺¹ → Cⁿ⁺¹ ,
+
+because the corresponding quasi-identity "x ∘ (2n+2)·x = 0 ⟹
+((n+1)·x) ∘ ((n+1)·x) = 0" holds in every MV-chain (in the group
+representation Γ(G,u): x ∘ (2n+2)x = 0 forces (2n+3)x ≤ u, hence
+(2n+2)x ≤ u, hence (n+1)x ∘ (n+1)x = 0), hence in every MV-algebra
+(subdirect products of chains), hence is derivable in Ł, which is
+algebraizable with the MV-algebras as its equivalent algebraic semantics.
+So NT_Ł ⊢ ¬φ(n̄). □
+
+**Claim 2: NT_Ł ⊢ ∃xφ(x).**
+Semantic proof, using Hájek's strong completeness of Ł∀ for theories
+w.r.t. safe models over MV-chains. Let M be any safe MV-chain model of 𝒯,
+with values in the chain [0,u] ⊆ G (G a totally ordered abelian group).
+Since D(m) ≥ p for all m by (†), D(m) → p = u − D(m) + p, so
+sup_m (D(m) → p) = u − inf_m D(m) + p = u by (†) (order-reversing translation
+preserves infs/sups in a totally ordered group; safety guarantees the sup
+exists as the value of ∃x(T(τ(x)) → ¬C)). Put y_m := D(m) → p, so
+sup y_m = u and ‖φ(m)‖ = y_m ∘ y_m = max(0, 2y_m − u). If some y_m = u we are
+done. Otherwise e_m := u − y_m > 0 with inf e_m = 0; if t < u bounded every
+2y_m − u then 2e_m ≥ u − t =: d > 0 for all m; in a non-discrete totally
+ordered group every d > 0 has some g > 0 with 2g < d, and then e_m > g for
+all m contradicts inf e_m = 0; a discrete group has no sequence of positive
+elements with infimum 0. Hence sup_m ‖φ(m)‖ = u = 1. So ‖∃xφ(x)‖ = 1 in
+every safe model of 𝒯, hence NT_Ł ⊢ ∃xφ(x). □
+
+Syntactic route for Claim 2 (for the reader who prefers derivations):
+(a) C ↔ ∃x¬T(τ(x)) (schema); (b) hence ¬C ↔ ∀xT(τ(x)); (c) the Ł∀ theorem
+∃x(A(x) → ∀yA(y)) with A(x) := T(τ(x)) gives ∃x(T(τ(x)) → ¬C); (d) from
+⊢ ∃xY(x) get ⊢ (∃xY) ∘ (∃xY) (fusion of theorems), then
+⊢ ∃x∃x'(Y(x) ∘ Y(x')) (Ł∀ moves ∃ out of ∘), then, using prelinearity
+(Y(x) → Y(x')) ∨ (Y(x') → Y(x)) and distribution of ∘ over ∨,
+⊢ ∃x(Y(x) ∘ Y(x)) = ∃xφ(x).
+
+**So NT_Ł proves ∃xφ(x) and refutes every instance: ω-inconsistent.**
+This confirms the reported Restall result and shows it needs nothing beyond
+the sentence-by-sentence schema. (§4's observation that NT_Ł ⊬ C is
+compatible: the witness is not C.)
+
+Remark. In every safe model, ¬c is an "infinitesimal" (¬c ∘ n·¬c = 0 for
+all n), and the witness says "some power of C is as close to ¬C as ¬C is to
+1, twice over"; standard powers are only infinitesimally close to 1, but
+the infimum (†) forces a nonstandard power down to ¬c.
+
+## 12. Exactly where the proof uses more than RWK  [verified]
+
+The derivation uses two principles, both invalid in RWK, and I have a
+concrete RWK-algebra refuting each.
+
+**(α) Infinitesimals do not interact.** Claim 1 needs the inference
+{¬C → Cᵏ : k ≥ 1} ⊢ ¬C² → C², i.e. the quasi-identity
+"p ∘ k·p = 0 for all k ⟹ 2p ∘ 2p = 0". This holds in every prelinear
+algebra (§6, Prop. 6.3) and fails in the following **6-element RWK-algebra
+A₆**, verified by `verify_A6.py`:
+
+    0 < p < x, y < q < 1,   x and y incomparable (a chain–diamond–chain),
+    ¬: 0↔1, p↔q, x↔y,
+    fusion on join-irreducibles: p∘p = p∘x = p∘y = 0, x∘x = x, x∘y = 0, y∘y = p,
+    extended by join-preservation; 1 is the unit.
+
+A₆ is a bounded integral commutative involutive distributive residuated
+lattice (all residuated-lattice axioms machine-checked), it is not prelinear
+((x→y) ∨ (y→x) = q ≠ 1), and p is an interacting infinitesimal: the
+multiples are p, 2p = y, 3p = y, …, all ≤ ¬p = q, while 2p ∘ 2p = y ∘ y = p ≠ 0.
+Interpreting C as q, every premise ¬C → Cᵏ holds (¬q = p ≤ q, x = qᵏ for k ≥ 2)
+while ¬C² → C² = (y → x) fails. So the inference is not RWK-valid.
+
+**(β) The drinker principle.** Claim 2 needs ∃x(A(x) → ∀yA(y)), valid in
+all MV-chains, not a theorem of RWKQ. Counter-model: the **completed Chang
+chain** 0 < ε < 2ε < … < ω < … < 1−2ε < 1−ε < 1 with
+(1−jε)∘(1−kε) = 1−(j+k)ε, (1−jε)∘kε = (k−j)ε if k > j else 0,
+(1−jε)∘ω = ω, and all products of elements ≤ ω equal 0. This is a complete
+involutive residuated chain (associativity and sup-preservation checked by
+cases; ¬ω = ω), hence an RWK-algebra, and it is not an MV-algebra. Take
+A(n) := 1 − nε: inf_n A(n) = ω and A(n) → ω = ω for every n, so
+sup_n (A(n) → inf_m A(m)) = ω ≠ 1.
+
+(The squaring step in (d) also uses prelinearity; A₆ refutes that too.)
+
+**Consequence.** The Łukasiewicz ω-inconsistency proof does not go through
+in RWK: both of its non-RWK ingredients are refuted by RWK-algebras. This
+is precisely the "individually harmless subsystems" phenomenon Bacon's
+abstract describes; the two ingredients here are "prelinearity-type"
+principles, which RWK lacks. **It does not show NT_RWK is ω-consistent.**
+To show that one needs an RWK-model of *all* of 𝒯 in which the relevant
+sentences take the "wrong" values, and neither A₆ nor the completed Chang
+chain is known to carry such a model.
+
+## 13. What ω-consistency of NT_RWK would require, and what is ruled out
+
+**13.1 The ω-closure.** Let NT_RWK^ω be NT_RWK closed under the ω-rule
+(from ⊢ φ(n̄) for all n infer ⊢ ∀xφ(x)).
+* If NT_RWK is ω-inconsistent then NT_RWK^ω is trivial (it proves ∃xφ and
+  ∀x¬φ, and RWK has multiplicative explosion, §1).
+* NT_RWK^ω is non-trivial iff there is a **safe standard-domain
+  RWK-model** of 𝒯: its Lindenbaum algebra, with the numerals as domain, is
+  such a model (the ω-rule makes [∀xφ] = inf_n [φ(n̄)]), and conversely any
+  such model is sound for the ω-rule.
+So a safe standard-domain RWK-model of 𝒯 would prove NT_RWK ω-consistent,
+and the natural way to prove ω-inconsistency is to show no such model exists
+and then extract a witness. Every such model must solve the single equation
+(P) of §6 for Restall's sentence, and (Lemma 6.1(e)) must contain interacting
+infinitesimals. A₆ shows that ingredient is available in RWK; the difficulty
+is combining it with infinitely descending powers whose infimum is ¬q.
+
+**13.2 What is ruled out** (all [verified]):
+1. complete chains, complete prelinear algebras (Props 6.2, 6.3);
+2. twist products K(L) over complete chains, and K(K(M)) for M a chain (Prop 6.4 and the same argument one level up);
+3. **the family A(C₁)**: for any chain C₁ with an order-reversing involution
+   ν and a commutative associative sup-preserving integral operation ⋆
+   whose orthogonality relation x ⋆ y = ⊥ ⟺ x ≤ ν(y) is balanced
+   (Z(a⋆b,c) ⟺ Z(a,b⋆c)), the algebra {0,1} ∪ C₁×{0,1} with
+   ¬(a,i) = (ν(a),1−i) and (a,i)∘(b,j) = 0 if [a ≤ ν(b) and i+j ≤ 1], else
+   (a⋆b, 0), is a complete distributive involutive FL_ew-algebra (A₆ is the
+   case C₁ = 2). In A(C₁) equation (P) reduces to inf_n a^{⋆n} = ν(a) with
+   a^{⋆n} ≠ ⊥, which is impossible in a chain by the argument of Prop 6.2.
+   (Join-preservation forces the orthogonal products to be ⊥, which is why
+   a "threshold" variant with x ⋆ y ≤ θ does not work either.)
+4. **ultraproducts followed by completion**: if A* = ∏ A_N / U and q = [q_N]
+   has ¬q ≤ qⁿ for all standard n, then for every function k(N) → ∞ along U
+   the element [q_N^{k(N)}] is a lower bound of all standard powers; requiring
+   all of them to lie below ¬q forces the least exponent m(N) with
+   q_N^{m(N)} ≤ ¬q_N to be bounded, hence q^{H+1} = 0 for a standard H. So no
+   MacNeille completion of an ultraproduct of models of the relations solves (P).
+
+**13.3 The most promising positive route.** Let F be the RWK-algebra
+presented by one generator q and the relations ¬q ≤ qⁿ (n ≥ 1). (P) holds in
+F iff every term t(q) with F ⊨ t ≤ qⁿ for all n satisfies F ⊨ t ≤ ¬q — an
+"ω-rule admissibility" statement about the equational theory of RWK-algebras.
+Every candidate term I tried (2p∘2p, 2p∘q, q^k ∧ 2p, (q→p)∘q, …) is
+provably ≤ ¬q, and a counterexample would need a term that is a lower bound
+of all powers in every model yet exceeds ¬q in some model like A₆, where
+the only such elements are the stabilised powers, which are not provable
+lower bounds. If (P) holds in F, then F, or its MacNeille completion, is a
+safe RWK-algebra solving the Restall equation; the remaining task would be a
+simultaneous fixed point for all sentences over it (a substitute for
+Brouwer), which is the real obstacle in every non-Ł route.
+
+## 14. Status of the ω-consistency question
+
+| Theory | ω-consistent? | Evidence |
+|---|---|---|
+| NT_Ł (schema only) | **No** | Theorem Ω, witness (T(τ(x)) → ¬C)² |
+| NT_RWK | **Open** | Theorem Ω's proof fails at two RWK-invalid steps (A₆, completed Chang); no RWK-model of 𝒯 outside the Ł-models is known; standard-domain models are ruled out over chains, prelinear algebras, twist products over chains, the family A(C₁), and completions of ultraproducts |
+| NT_RWK^ω (ω-closure) | **Open**, equivalent to existence of a safe standard-domain RWK-model | §13.1 |
+
+What I could not do: produce either a witness valid in *all* RWK-models of
+𝒯, or a single RWK-model of 𝒯 that is not an Ł-model. The first would need
+a provable existential in RWKQ + 𝒯 with all instances refutable, and RWKQ
+proves very few existentials without witnesses (the drinker and its relatives
+fail); the second needs a fixed-point theorem over a non-prelinear algebra.
+My best guess is that NT_RWK is ω-consistent, because every mechanism that
+produces the Ł witness is prelinearity-driven, but that is a guess, not a
+theorem.

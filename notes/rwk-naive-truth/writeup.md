@@ -1,6 +1,6 @@
 # Is RWK compatible with naive truth?
 
-*Final write-up. Working notes, proofs, failed attempts, and the source list are in `notes.md`; the numerical check of the key inclusion is `check_rwk_in_L.py`.*
+*Final write-up. Working notes, proofs, failed attempts, and the source list are in `notes.md` (Part II covers ω-consistency); the numerical check of the key inclusion is `check_rwk_in_L.py`, and `verify_A6.py` checks the 6-element algebra used below.*
 
 ## Short answer
 
@@ -58,14 +58,34 @@ Three things I proved (details in the notes):
 
 What is left is precisely the non-prelinear complete RWK-algebras beyond these, which is exactly the room RWK has that Ł lacks. If no such algebra solves (P), then "RWK + naive truth has no standard model" holds in full generality, and the Łukasiewicz negative result becomes a theorem about all of RWK. If some algebra does, the next step is a fixed-point theorem for all sentences simultaneously, replacing Brouwer, over that algebra. Either result would be new as far as I can tell. My attempts to build a solution directly (a countable poset with the interaction pattern forced by the necessary conditions) failed on associativity of fusion; I do not read that as evidence either way.
 
+## ω-consistency
+
+This is the sharp question, and the answer is: not known, and I could not settle it, but I can say exactly what it turns on.
+
+**The Łukasiewicz theory is ω-inconsistent, from the schema alone.** Let C be Restall's sentence, C ↔ ∃x ¬T(τ(x)), with T(τ(n)) provably equivalent to the n-fold fusion Cⁿ. Put
+
+    φ(x) := (T(τ(x)) → ¬C) ∘ (T(τ(x)) → ¬C).
+
+Then NT_Ł proves ∃xφ(x) and proves ¬φ(n̄) for every n (Theorem Ω in the notes). The refutations use that ¬C is an "infinitesimal" in every model, together with the Ł-inference from ¬C → C^{2n+2} to ¬Cⁿ⁺¹ → Cⁿ⁺¹. The existential uses that the infimum of all powers of C is exactly ¬C, so the Ł-valid drinker principle ∃x(A(x) → ∀yA(y)) makes some power of C, necessarily nonstandard, sit at ¬C. This recovers Restall's 1992 result with no uniform disquotation, no truth-induction and no ω-rule.
+
+**Both non-RWK ingredients are refuted by RWK-algebras.** A six-element non-prelinear RWK-algebra A₆ (machine-verified) has an element p with every multiple below ¬p but 2p ∘ 2p ≠ 0, so the refutation step is not RWK-valid. The completed Chang chain is a complete RWK-chain in which the drinker principle fails. So the Łukasiewicz proof does not transfer, and the two ingredients are exactly the "prelinearity-type" principles RWK lacks. This is consistent with Bacon's abstract about two individually harmless subsystems of Ł.
+
+**What this does not show.** Refuting the steps of one proof does not prove ω-consistency. That would need an RWK-model of the whole truth schema in which the relevant sentences take non-Ł values, and no RWK-model of the schema other than the Łukasiewicz ones is known. Two clean reductions:
+
+- NT_RWK is ω-consistent if its ω-closure is non-trivial, and the ω-closure is non-trivial exactly when there is a safe standard-domain RWK-model of the schema.
+- Any such model must solve the Restall equation (P) and must contain interacting infinitesimals. A₆ shows the second ingredient exists in RWK. The first is ruled out over complete chains, complete prelinear algebras, twist products over chains, a new family A(C₁) generalising A₆, and every completion of an ultraproduct of models of the defining inequalities. The open case is the finitely presented algebra ⟨q | ¬q ≤ qⁿ⟩ and whatever else lies outside these families.
+
+My best guess is that RWK's theory is ω-consistent, because every known mechanism for the Ł witness is prelinearity-driven. That is a conjecture, not a result.
+
 ## Consolidated status
 
 | Question | Status for RWK |
 |---|---|
 | Naive truth schema (+ T-rules, intersubstitutivity) over PA | **Consistent** (via RWK ⊂ Ł and HPS 2000) |
+| ω-consistency of the Łukasiewicz theory NT_Ł | **No**: explicit witness, proof in the notes |
+| ω-consistency of NT_RWK | **Open**; the Ł proof fails at two RWK-invalid steps; my conjecture is yes |
 | Standard model over [0,1], over any complete chain, over any complete prelinear algebra | **No** (HPS for [0,1]; my proofs for the rest) |
-| Standard model over some non-prelinear complete RWK-algebra | **Open**; reduces to problem (P) |
-| Syntactic ω-consistency of the schema theory | **Open**; schema alone does not prove Restall's C |
+| Standard model over some non-prelinear RWK-algebra | **Open**; reduces to problem (P); several families excluded |
 | Uniform disquotation / truth commuting with connectives | **Open** (inconsistent over Ł) |
 | Truth allowed in induction | **Open** (reportedly inconsistent over Ł) |
 | Naive comprehension | **Open** both ways (White's Ł proof flawed; Grišin does not cover distribution) |
@@ -73,8 +93,8 @@ What is left is precisely the non-prelinear complete RWK-algebras beyond these, 
 
 ## What would settle the open parts
 
-1. Read Bacon (2013) and check whether its strengthened Curry derivation, and its two "individually harmless" subsystems, use anything outside RWK; specifically whether prelinearity or Łukasiewicz's axiom is needed. This decides the ω-inconsistency row.
-2. Decide problem (P) for distributive involutive FL_ew-algebras. A negative answer likely goes through some structural fact about elements p with n·p ≤ ¬p in non-prelinear algebras; a positive answer probably needs an algebra not of twist form.
+1. Decide whether the finitely presented RWK-algebra ⟨q | ¬q ≤ qⁿ (n ≥ 1)⟩ has inf qⁿ = ¬q, i.e. whether every term that is provably below all powers of q is provably below ¬q. A positive answer gives a safe RWK-algebra for the Restall equation and is the first step toward a standard-domain model, hence ω-consistency; a negative answer, via the witnessing term, is the first step toward a witness of ω-inconsistency.
+2. Read Bacon (2013) and compare its two "individually harmless" subsystems with the two ingredients isolated here (interacting infinitesimals, the drinker principle).
 3. For comprehension, try to add naive comprehension to a Dunn–Mints or display calculus for RWK and push Grišin/Cantini-style cut elimination through distribution.
 
 ## Caveats
